@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="code.js"></script>
+</head>
+<body>
+   <div class="container">
+   <div>
+   <button data-modal-target="#modal">Add Book</button>
+   </div>
+   <div class="libraryList">
+       <table>
+           <tr>
+               <td>title</td>
+               <td>author</td>
+               <td>pages</td>
+               <td>read</td>
+               <td>remove</td>
+           </tr>
+       </table>
+   </div>
+   </div>
+   <div class="modal" id="modal">
+    <div class="modal-header">
+        <div class="title">Add-a-Book</div>
+        <button data-close-button class="close-button">&times;</button>
+    </div>
+    <form class="modal-body">
+        <label for="title">Title</label>
+        <input name="title" class="title" id="title" type="text">
+        <label for="author">Author</label>
+        <input name="author" id="author" class="author" type="text">
+        <label for="pages">Pages</label>
+        <input name="pages" class="pages" id="pages" type="number">
+        <label for="read">Read</label>
+        <input type="radio" name="read" id="read">
+        <input type="button" id="submit" value="Add Book">
+    </form>
+   </div>
+   <div id="overlay"></div>
+</body>
+</html>

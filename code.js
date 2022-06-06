@@ -3,6 +3,8 @@ const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
 const submitButton = document.getElementById('submit')
 
+
+
 submitButton.addEventListener('click', () => {
   handleSubmitButton();
 })
@@ -47,18 +49,12 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    this.sayInfo = function() {
-        return(title + ' by ' + author + ', ' + pages + ', ' + read)
-    }
 }
 
 function addBookToLibrary (newBook) {
   myLibrary.push(newBook)
 }
 
-function getInfo() {
-  
-}
 // const newBook = new Book('The Hobbit', 'J.R.R Tolkien', '295 pages', 'not yet read')
 
 // const newBook2 = new Book('1984', 'George Orwell', '330', 'read')
@@ -82,15 +78,53 @@ function handleSubmitButton () {
   bookAuthor.value = "";
   bookPages.value = "";
   bookRead.checked = false;
+  displayBooks();
 }
 
 
-// function viewBooks() {
-// for (let i = 0; i < myLibrary.length; i++)
-// body.add.innerHTML()
 
-// }
 
-console.log(newBook.sayInfo())
+function displayBooks() {
+  let removeButton = document.createElement("button");
+  removeButton.setAttribute("data-num", myLibrary.length - 1);
+  removeButton.setAttribute("id", "removeButton");
+  removeButton.innerHTML = "Remove";
+  
+// for (let i = 0; i < myLibrary.length; i++) {
+   let table = document.getElementById('libraryList')
+  let row = table.insertRow(0);
+  row.setAttribute("data-num", myLibrary.length - 1);
+
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  let cell5 = row.insertCell(4);
+
+cell1.innerHTML = myLibrary[myLibrary.length - 1].title;
+cell2.innerHTML = myLibrary[myLibrary.length - 1].author;
+cell3.innerHTML = myLibrary[myLibrary.length - 1].pages;
+cell4.innerHTML = myLibrary[myLibrary.length - 1].read;
+cell5.appendChild(removeButton);
+
+
+
+}
+
+//  let removeButton = document.getElementById("removeButton");
+//  removeButton.onclick = removeRow(this);
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id == 'removeButton'){
+    removeRow(e.target);
+  }
+})
+function removeRow(element) {  
+  let row = element.parentNode.parentNode;
+  let table = row.parentNode;
+  table.removeChild(row);
+
+
+  // element.closest('tr').remove();
+};
 
 

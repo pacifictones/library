@@ -55,25 +55,42 @@ function addBookToLibrary (newBook) {
   myLibrary.push(newBook)
 }
 
-// const newBook = new Book('The Hobbit', 'J.R.R Tolkien', '295 pages', 'not yet read')
-
-// const newBook2 = new Book('1984', 'George Orwell', '330', 'read')
-
-// addBookToLibrary(newBook)
-
-// addBookToLibrary(newBook2)
 
 function handleSubmitButton () {
   let bookTitle = document.getElementById('title');
   let title = bookTitle.value;
+
+  //validate a title was entered
+  if (title === '') {
+    alert("Please enter a title!");
+    return;
+  }
+
   let bookAuthor = document.getElementById('author')
   let author = bookAuthor.value
+
+  //validate author field was filled in
+  if (author === '') {
+    alert("Please enter an author!")
+    return;
+  }
+
   let bookPages = document.getElementById('pages')
   let pages = bookPages.value;
-  let bookRead = document.getElementById('read')
-  let read = bookRead.value;
+
+  //Validate pages were entered
+  if (pages === '') {
+    alert("Please enter the number of pages!")
+    return;
+  }
+
+  let bookRead = document.querySelector('#read')
+  let read = bookRead.checked;
   let newbook = new Book(title, author, pages, read)
+
   addBookToLibrary(newbook);
+
+  //Reset form with empty strings
   bookTitle.value = "";
   bookAuthor.value = "";
   bookPages.value = "";
@@ -81,18 +98,44 @@ function handleSubmitButton () {
   displayBooks();
 }
 
+const resetButton = document.getElementById('reset');
+
+resetButton.addEventListener('click', () => {
+  let bookTitle = document.getElementById('title');
+  let title = bookTitle.value;
+  let bookAuthor = document.getElementById('author')
+  let author = bookAuthor.value
+  let bookPages = document.getElementById('pages')
+  let pages = bookPages.value;
+  let bookRead = document.querySelector('#read')
+  let read = bookRead.checked;
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+  bookRead.checked = false;
+} )
 
 
 
 function displayBooks() {
+  let readButton = document.createElement("button");
+  readButton.setAttribute("class", "readButton");
+  readButton.innerHTML = "Read";
+  readButton.style.backgroundColor = "green"
+
+  notReadButton = document.createElement("button");
+  notReadButton.setAttribute("class", "readButton");
+  notReadButton.innerHTML = "Not read";
+  notReadButton.style.backgroundColor = "orange"; 
+
   let removeButton = document.createElement("button");
   removeButton.setAttribute("data-num", myLibrary.length - 1);
   removeButton.setAttribute("id", "removeButton");
   removeButton.innerHTML = "Remove";
   
-// for (let i = 0; i < myLibrary.length; i++) {
+
    let table = document.getElementById('libraryList')
-  let row = table.insertRow(0);
+  let row = table.insertRow(1);
   row.setAttribute("data-num", myLibrary.length - 1);
 
   let cell1 = row.insertCell(0);
@@ -104,27 +147,35 @@ function displayBooks() {
 cell1.innerHTML = myLibrary[myLibrary.length - 1].title;
 cell2.innerHTML = myLibrary[myLibrary.length - 1].author;
 cell3.innerHTML = myLibrary[myLibrary.length - 1].pages;
-cell4.innerHTML = myLibrary[myLibrary.length - 1].read;
+
+if (myLibrary[myLibrary.length - 1].read == true) {
+  cell4.appendChild(readButton) 
+} else {
+  cell4.appendChild(notReadButton)
+};
 cell5.appendChild(removeButton);
-
-
-
 }
 
-//  let removeButton = document.getElementById("removeButton");
-//  removeButton.onclick = removeRow(this);
 document.addEventListener('click', function(e){
   if(e.target && e.target.id == 'removeButton'){
     removeRow(e.target);
   }
 })
+
 function removeRow(element) {  
   let row = element.parentNode.parentNode;
   let table = row.parentNode;
   table.removeChild(row);
-
-
-  // element.closest('tr').remove();
 };
 
-
+document.addEventListener('click', function(e) {
+  if(e.target && e.target.classList == "readButton") {
+    if(e.target.textContent === "Read"){
+    e.target.textContent = "Not read"
+    e.target.style.backgroundColor = "orange";
+   } else if (e.target.textContent === "Not read"){
+     e.target.textContent = "Read"
+     e.target.style.backgroundColor = "green"
+   } 
+}
+})

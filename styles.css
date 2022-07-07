@@ -1,4 +1,5 @@
  *, *::after, *::before {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
 }
 
@@ -12,10 +13,20 @@
     border-radius: 10px;
     z-index: 10;
     background-color: white;
-    width: 500px;
+    width: 300px;
     max-width: 80%;
 }
 
+#addBookButton {
+    padding: 10px;
+    font-size: large;
+    margin-bottom: 40px;
+    align-self: center;
+    background-color: #f0f9ff;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
 
 
 .modal.active {
@@ -44,7 +55,10 @@
 }
 
 .modal-body {
+    display: flex;
+    flex-direction: column;
     padding: 10px 15px ;
+    margin: ;
 }
 
 #overlay {
@@ -59,10 +73,107 @@
     pointer-events: none;
 }
 .container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    /* display: grid;
+    grid-template-columns: 1fr ;
+    grid-gap: 10px;
+    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
 }
 #overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 800px;
+    width: 80vw;
+}
+
+tr {
+    border-bottom: 1px dotted gray;
+}
+
+td {
+    text-align: center;
+    padding: 5px 15px;    
+}
+
+#header {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0c4a6e;
+}
+
+.readButton {
+    width: 90px;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    
+}
+
+#removeButton {
+    width: 90px;
+    background-color: rgb(247, 195, 195);
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    
+}
+
+th {
+    padding: 10px;
+    background-color: #0c4a6e;
+    color: #f0f9ff;
+}
+
+.title, .author, .pages, .read, .submit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    color: #0c4a6e;
+    
+   
+}
+
+label {
+    color: #0c4a6e;
+}
+
+#submit {
+    width: 100px;
+    font-size: 16px;
+    align-self: center;
+    padding: 12px;
+    margin: 10px;
+    background-color: #0284c7;
+    border: none;
+    border-radius: 5px;
+    color: #f0f9ff;
+}
+
+.read {
+    background-color: rgb(80, 92, 228);
+    
+}
+
+#reset {
+    width: 50px;
+    align-self: flex-end;
+    border-radius: 3px;
+    border: none;
+    background-color: #0284c7;
+    padding: 6px;
+    color: white;
+    
 }
